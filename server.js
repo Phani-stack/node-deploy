@@ -1,10 +1,11 @@
 import express from 'express'
 import 'dotenv/config'
-
+import cors from 'cors'
 const port  = process.env.PORT || 8000;
 
 const app = express()
 app.use(express.json());
+app.use(cors());
 
 app.post('/add', (req, res) => {
    let { a, b } = req.body;
