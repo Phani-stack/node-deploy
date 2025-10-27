@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <input id="a" />
+   <input id="b" />
+   <button id="btn">submit</button>
+   <div id="con"></div>
+   <script>
+      const a = document.getElementById("a")
+      const b = document.getElementById("b")
+      const con = document.getElementById("con")
+      const sub = document.getElementById("btn")
+
+      const production = 'https://addition-of-two-numbers-hgz3.onrender.com/add'
+      
+      sub.addEventListener('click', () => {
+         fetch(production, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ a: Number(a.value), b: Number(b.value) })
+         })
+            .then(res => res.json())
+            .then(data => con.innerHTML = JSON.stringify(data.sum))
+            .catch(err => con.innerHTML = `Error: ${err}`)
+      })
+   </script>
+</body>
+
+</html>
